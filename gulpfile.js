@@ -2,6 +2,9 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
+var jade = require('gulp-jade');
+//var pug = require('gulp-pug');
+var eslint = require('gulp-eslint');
 var coffee = require('gulp-coffee');
 var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
@@ -61,8 +64,36 @@ gulp.task('scripts', function(){
   );
 });
 
+
+gulp.task('views', function(){
+  return gulp.src('src/views/**/*.jade')
+    .pipe(jade({
+      pretty: true
+    }))
+    .pipe(rename({
+      extname: '.html'
+    }))
+    .pipe(gulp.dest('./'));
+});
+
+//
+// gulp.task('views', function(){
+//   return gulp.src('src/views/**/*.pug')
+//     .pipe(eslint()
+//     .pipe(rename({
+//       dirname: './dist/views',
+//       extname: '.html'
+//     }))
+//     .pipe(eslint.format())
+//     .pipe(eslint.failAfterError())
+//     .pipe(gulp.dest('./dist/'))
+//   );
+//   //.pipe(pug);
+// });
+//
 gulp.task('default', ['browser-sync'], function(){
   gulp.watch("src/styles/**/*.scss", ['styles']);
   gulp.watch("src/scripts/**/*.coffee", ['scripts']);
+  gulp.watch("src/views/**/*.jade", ['views']);
   gulp.watch("*.html", ['bs-reload']);
 });

@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    script(type='text/javascript').
+      if (foo) bar(1 + 5)
+      console.log(foo)
+  body
+    h1 Pug - node template engine in the house
+    #container.col
+      if youAreUsingPug
+        p You are amazings Some
+      else
+        p Get on it!
+      h2 Some thing in the way
+      p.
+        Pug is a terse and simple templating language with a
+        strong focus on performance and powerful features.ssaffa
