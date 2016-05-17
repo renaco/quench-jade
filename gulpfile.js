@@ -9,6 +9,7 @@ var coffee = require('gulp-coffee');
 var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
+var svgSprite = require('gulp-svg-sprite');
 var imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache');
 var sass = require('gulp-sass');
@@ -30,6 +31,32 @@ gulp.task('images', function(){
   gulp.src('src/images/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(gulp.dest('dist/images/'));
+});
+
+config = {
+  shape: {
+    dimension: {
+      maxWidth: 32,
+      minWidth: 32
+    },
+    spacing: {
+      padding: 10
+    }
+  },
+  mode: {
+    view: {
+      bust: false,
+      render: {
+        scss: { dest: '' }
+      }
+    }
+  }
+};
+
+gulp.task('svg', function() {
+  return gulp.src(path.svg)
+    .pipe(svgSprite(config))
+    .pipe(gulp.dest(path.sprite));
 });
 
 gulp.task('styles', function(){
