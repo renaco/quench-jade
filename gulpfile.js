@@ -39,7 +39,7 @@ gulp.task('styles', function(){
     .pipe(sass())
     .pipe(autoprefixer('last 2 versions'))
     .pipe(gulp.dest('dist/styles/'))
-    .pipe(browserSync.reload({stream:true}))
+    .pipe(browserSync.reload({stream:true}));
 });
 
 gulp.task('scripts', function(){
@@ -58,6 +58,7 @@ gulp.task('scripts', function(){
     .pipe(uglify())
     .pipe(gulp.dest('dist/scripts/'))
     .pipe(browserSync.reload({stream:true}))
+  );
 });
 
 gulp.task('default', ['browser-sync'], function(){
