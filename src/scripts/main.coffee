@@ -1,5 +1,7 @@
+console.log 'fsfs'
+###
 i = 0
-text = 'First Page'
+text = 'First Pagessds'
 
 console.log i
 
@@ -13,3 +15,5 @@ listen = (el, event, handler) ->
   else
     el.attachEvent 'on' + event, ->
       handler.call el
+
+###
